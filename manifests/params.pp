@@ -1,6 +1,6 @@
 class limits::params {
     case $operatingsystem {
-        /(Ubuntu|Debian)/: {
+        /(Ubuntu|Debian|CentOS)/: {
             $limits_dir = '/etc/security/limits.d/'
         }
     }
