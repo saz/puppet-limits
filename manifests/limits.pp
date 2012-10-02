@@ -1,5 +1,6 @@
 define limits::limits ($ensure = present, $user = undef, $limit_type = undef, $hard = undef, $soft = undef) {
-    include limits
+
+    require limits
 
     file { "${limits::params::limits_dir}${name}":
         ensure  => $ensure,
