@@ -1,5 +1,7 @@
 # puppet-limits
 
+[![Build Status](https://secure.travis-ci.org/saz/puppet-limits.png)](http://travis-ci.org/saz/puppet-limits)
+
 Manage user and group limits via Puppet
 
 ## How to use
