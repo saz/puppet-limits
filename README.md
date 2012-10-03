@@ -2,17 +2,32 @@
 
 Manage user and group limits via Puppet
 
-## Usage
+## How to use
 
-```
+### Purge limits.d directory
+
+```ruby
     limits::limits { 'username_nofile':
-        ensure => present,
-        user => 'username',
-        limit_type => 'nofile',
-        hard => 16384,
-        soft => 16384,
+      ensure     => present,
+      user       => 'username',
+      limit_type => 'nofile',
+      hard       => 16384,
+      soft       => 16384,
+    }
+```
+### Do NOT purge limits.d directory
+
+```ruby
+    class { 'limits':
+      purge_limits_d_dir => false,
+    }
+
+    limits::limits { 'username_nofile':
+      ensure     => present,
+      user       => 'username',
+      limit_type => 'nofile',
+      hard       => 16384,
     }
 ```
 
-You can set hard and soft only, but at least one of them
-should be set.
+One or both of hard and soft must be set!
