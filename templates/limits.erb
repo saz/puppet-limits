@@ -1,7 +1,7 @@
-<% if has_variable?('hard') then -%>
+<% if @hard then -%>
 <%= user %> hard <%= limit_type %> <%= hard %>
 <% end -%>
 
-<% if has_variable?('soft') then -%>
+<% if @soft then -%>
 <%= user %> soft <%= limit_type %> <%= soft %>
 <% end -%>
