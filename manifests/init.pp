@@ -1,5 +1,5 @@
 class limits(
-  $purge_limits_d_dir = true,
+  $purge_limits_d_dir = true
 ) inherits limits::params {
   file { $limits::params::limits_dir:
     ensure  => directory,
