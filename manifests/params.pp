@@ -1,7 +1,14 @@
 class limits::params {
-    case $operatingsystem {
-        /(Ubuntu|Debian|CentOS)/: {
-            $limits_dir = '/etc/security/limits.d/'
-        }
+  case $::osfamily {
+    'Debian': {
+      $limits_dir = '/etc/security/limits.d/'
     }
+    default: {
+      case $::operatingsystem {
+        default: {
+          fail("Unsupported platform: ${::osfamily}/${::operatingsystem}")
+        }
+      }
+    }
+  }
 }
