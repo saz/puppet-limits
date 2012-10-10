@@ -1,6 +1,6 @@
 class limits::params {
   case $::osfamily {
-    'Debian': {
+    'Debian','RedHat': {
       $limits_dir = '/etc/security/limits.d/'
     }
     default: {
