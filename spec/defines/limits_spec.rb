@@ -1,8 +1,7 @@
 require 'spec_helper'
 describe 'limits::limits', :type => :define do
-  let :title do
-    'username_nofile'
-  end
+  let(:title)    { 'username_nofile' }
+  let(:filename) { '/etc/security/limits.d/username_nofile.conf' }
 
   let :facts do
     {
@@ -20,13 +19,32 @@ describe 'limits::limits', :type => :define do
       }
   end
 
-  describe "when creating an limits entry" do
-
-    let :filename do
-      '/etc/security/limits.d/username_nofile'
-    end
+  describe "when creating a limits entry not ending in .conf" do
 
     it { should contain_limits__limits('username_nofile').with({
+        :user       => 'username',
+        :limit_type => 'nofile',
+        :ensure     => 'present',
+        :hard       => '16384',
+        :soft       => '16384'
+      })
+    }
+
+    it { should contain_file(filename).with({
+        'ensure'    => 'present',
+        'content'   => "username hard nofile 16384\n\nusername soft nofile 16384\n",
+        'owner'     => 'root',
+        'group'     => 'root',
+      })
+    }
+
+  end
+
+  describe "when creating a limits entry ending in .conf" do
+
+    let(:title)    { 'username_nofile.conf' }
+
+    it { should contain_limits__limits('username_nofile.conf').with({
         :user       => 'username',
         :limit_type => 'nofile',
         :ensure     => 'present',
@@ -54,10 +72,6 @@ describe 'limits::limits', :type => :define do
       :hard       => '16384',
       :soft       => '16384'
       }
-    end
-
-    let :filename do
-      '/etc/security/limits.d/username_nofile'
     end
 
     it { should contain_file(filename).with({
