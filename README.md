@@ -2,6 +2,8 @@
 
 Manage user and group limits via Puppet
 
+This module manages the limits of the PAM module pam_limits.
+
 ## How to use
 
 ### Purge limits.d directory
