@@ -82,4 +82,36 @@ describe 'limits::limits', :type => :define do
       })
     }
   end
+
+  context "when creating a limits entry setting both limits" do
+
+    let :params do
+      {
+        :user       => 'username',
+        :limit_type => 'nofile',
+        :ensure     => 'present',
+        :both       => '16384'
+      }
+    end
+
+    let(:title)    { 'username_nofile.conf' }
+
+    it { should contain_limits__limits('username_nofile.conf').with({
+        :user       => 'username',
+        :limit_type => 'nofile',
+        :ensure     => 'present',
+        :both       => '16384'
+      })
+    }
+
+    it { should contain_file(filename).with({
+        'ensure'    => 'present',
+        'content'   => "username - nofile 16384\n",
+        'owner'     => 'root',
+        'group'     => 'root',
+      })
+    }
+
+  end
+
 end

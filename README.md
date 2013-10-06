@@ -32,4 +32,14 @@ This module manages the limits of the PAM module pam_limits.
     }
 ```
 
-One or both of hard and soft must be set!
+### Set both limit types in one line
+
+```ruby
+    limits::limits { 'username_nofile':
+      ensure     => present,
+      user       => 'username',
+      limit_type => 'nofile',
+      both       => 16384,
+    }
+
+One of hard, soft or both must be set!

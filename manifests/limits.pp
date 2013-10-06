@@ -3,7 +3,8 @@ define limits::limits(
   $limit_type,
   $ensure = present,
   $hard = undef,
-  $soft = undef
+  $soft = undef,
+  $both = undef
 ) {
   include limits::params
 

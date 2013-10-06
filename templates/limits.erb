@@ -1,7 +1,11 @@
+<% if @both then -%>
+<%= @user %> - <%= @limit_type %> <%= @both %>
+<% else -%>
 <% if @hard then -%>
-<%= user %> hard <%= limit_type %> <%= hard %>
+<%= @user %> hard <%= @limit_type %> <%= @hard %>
 <% end -%>
 
 <% if @soft then -%>
-<%= user %> soft <%= limit_type %> <%= soft %>
+<%= @user %> soft <%= @limit_type %> <%= @soft %>
+<% end -%>
 <% end -%>
