@@ -8,7 +8,7 @@ define limits::limits(
 ) {
   include limits::params
 
-  if $name =~ /.conf$/ {
+  if $name =~ /\.conf$/ {
     $target_file = "${limits::params::limits_dir}${name}"
   } else {
     $target_file = "${limits::params::limits_dir}${name}.conf"
