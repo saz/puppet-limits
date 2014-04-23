@@ -4,11 +4,7 @@ class limits::params {
       $limits_dir = '/etc/security/limits.d/'
     }
     default: {
-      case $::operatingsystem {
-        default: {
-          fail("Unsupported platform: ${::osfamily}/${::operatingsystem}")
-        }
-      }
+      fail("Unsupported platform: ${::osfamily}/${::operatingsystem}")
     }
   }
 }
