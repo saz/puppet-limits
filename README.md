@@ -8,7 +8,13 @@ This module manages the limits of the PAM module pam_limits.
 
 ### Purge limits.d directory
 
-```ruby
+The class `limits` will purge the limit.d directory as default.
+You can explicit change this with the parameter `purge_limits_d_dir`
+or just do not call the class.
+
+```puppet
+	class { 'limits': }
+
     limits::limits { 'username_nofile':
       ensure     => present,
       user       => 'username',
@@ -17,9 +23,9 @@ This module manages the limits of the PAM module pam_limits.
       soft       => 16384,
     }
 ```
-### Do NOT purge limits.d directory
+### Do NOT purge limits.d directory explicit
 
-```ruby
+```puppet
     class { 'limits':
       purge_limits_d_dir => false,
     }
@@ -34,12 +40,12 @@ This module manages the limits of the PAM module pam_limits.
 
 ### Set both limit types in one line
 
-```ruby
+```puppet
     limits::limits { 'username_nofile':
       ensure     => present,
       user       => 'username',
       limit_type => 'nofile',
       both       => 16384,
     }
-
+```
 One of hard, soft or both must be set!
