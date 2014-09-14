@@ -1,5 +1,5 @@
 name    'saz-limits'
-version '2.0.2'
+version '2.1.0'
 source 'UNKNOWN'
 author 'saz'
 license 'Apache License, Version 2.0'
