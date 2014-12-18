@@ -1,11 +1,13 @@
 # Managed by Puppet
+
+#<domain>    <type> <item>          <value>
 <% if @both then -%>
-<%= @user %> - <%= @limit_type %> <%= @both %>
+<%= "%-12s" % @user %>  -     <%= "%-14s" % @limit_type %>  <%= @both %>
 <% else -%>
 <% if @hard then -%>
-<%= @user %> hard <%= @limit_type %> <%= @hard %>
+<%= "%-12s" % @user %>  hard  <%= "%-14s" % @limit_type %>  <%= @hard %>
 <% end -%>
 <% if @soft then -%>
-<%= @user %> soft <%= @limit_type %> <%= @soft %>
+<%= "%-12s" % @user %>  soft  <%= "%-14s" % @limit_type %>  <%= @soft %>
 <% end -%>
 <% end -%>
