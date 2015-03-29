@@ -1,8 +1,0 @@
-name    'saz-limits'
-version '2.1.0'
-source 'UNKNOWN'
-author 'saz'
-license 'Apache License, Version 2.0'
-summary 'UNKNOWN'
-description 'Manage user limits via puppet'
-project_page 'https://github.com/saz/puppet-limits'
