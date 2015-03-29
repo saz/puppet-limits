@@ -32,7 +32,7 @@ describe 'limits::limits', :type => :define do
 
     it { should contain_file(filename).with({
         'ensure'    => 'present',
-        'content'   => "username hard nofile 16384\n\nusername soft nofile 16384\n",
+        'content'   => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nusername      hard  nofile          16384\nusername      soft  nofile          16384\n",
         'owner'     => 'root',
         'group'     => 'root',
       })
@@ -55,7 +55,7 @@ describe 'limits::limits', :type => :define do
 
     it { should contain_file(filename).with({
         'ensure'    => 'present',
-        'content'   => "username hard nofile 16384\n\nusername soft nofile 16384\n",
+        'content'   => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nusername      hard  nofile          16384\nusername      soft  nofile          16384\n",
         'owner'     => 'root',
         'group'     => 'root',
       })
@@ -76,7 +76,7 @@ describe 'limits::limits', :type => :define do
 
     it { should contain_file(filename).with({
         'ensure'    => 'absent',
-        'content'   => "username hard nofile 16384\n\nusername soft nofile 16384\n",
+        'content'   => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nusername      hard  nofile          16384\nusername      soft  nofile          16384\n",
         'owner'     => 'root',
         'group'     => 'root',
       })
@@ -106,7 +106,7 @@ describe 'limits::limits', :type => :define do
 
     it { should contain_file(filename).with({
         'ensure'    => 'present',
-        'content'   => "username - nofile 16384\n",
+        'content'   => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nusername      -     nofile          16384\n",
         'owner'     => 'root',
         'group'     => 'root',
       })
