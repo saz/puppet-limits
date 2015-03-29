@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
 group :development, :test do
-  gem 'rake', '< 3.2.0', {"platforms"=>["ruby_18"]}
+  gem 'rake'
   gem 'puppet-lint'
+  gem 'rspec', '< 3.2.0', {"platforms"=>["ruby_18"]}
   gem 'rspec-puppet',           '=1.0.1'
   gem 'puppetlabs_spec_helper'
 end
