@@ -1,6 +1,6 @@
 class limits(
   $purge_limits_d_dir = true,
-  $entries = hiera_hash(limits::entries, {})
+  $entries_hash = hiera_hash(limits::entries, {})
 ) inherits limits::params {
   file { $limits::params::limits_dir:
     ensure  => directory,
@@ -12,8 +12,8 @@ class limits(
   }
 
   ### Create instances for integration with Hiera
-  if $entries != {} {
-    validate_hash($entries)
-    create_resources(limits::limits, $entries)
+  if $entries_hash != {} {
+    validate_hash($entries_hash)
+    create_resources(limits::limits, $entries_hash)
   }
 }
