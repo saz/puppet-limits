@@ -1,6 +1,6 @@
 {
   "name": "saz-limits",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "author": "saz",
   "summary": "Manage user limits via puppet",
   "license": "Apache License, Version 2.0",
