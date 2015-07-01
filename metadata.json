@@ -22,6 +22,9 @@
     },
     {
       "operatingsystem": "Ubuntu"
+    },
+    {
+      "operatingsystem": "Gentoo"
     }
   ],
   "requirements": [
