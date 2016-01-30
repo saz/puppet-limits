@@ -38,9 +38,6 @@
     }
   ],
   "description": "Manage user limits via puppet",
-  "types": [
-  
-  ],
   "dependencies": [
   
   ]
