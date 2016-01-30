@@ -1,3 +1,5 @@
+# == Define: limits::limits
+#
 define limits::limits(
   $user,
   $limit_type,
@@ -6,7 +8,8 @@ define limits::limits(
   $soft = undef,
   $both = undef
 ) {
-  include limits::params
+
+  include ::limits::params
 
   if $name =~ /\.conf$/ {
     $target_file = "${limits::params::limits_dir}${name}"
