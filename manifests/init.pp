@@ -1,9 +1,12 @@
-class limits(
+# == Class: limits
+#
+class limits (
   $purge_limits_d_dir = true,
   $entries_hash = hiera_hash(limits::entries, {})
-) inherits limits::params {
+) inherits ::limits::params {
+
   file { $limits::params::limits_dir:
-    ensure  => directory,
+    ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
     force   => true,

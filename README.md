@@ -6,6 +6,14 @@ This module manages the limits of the PAM module pam_limits.
 
 ## How to use
 
+`include ::limits`
+
+## Compatibility
+
+This module has been tested to work with Puppet v3 (with and without the future
+parser) and v4 with Ruby versions 1.8.7 (Puppet v3 only), 1.9.3, 2.0.0 and
+2.1.0.
+
 ### Purge limits.d directory
 
 The class `limits` will purge the limit.d directory as default.
