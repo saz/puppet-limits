@@ -22,7 +22,7 @@ describe 'limits' do
         param_set
       end
 
-      ['Debian', 'Gentoo', 'RedHat'].each do |osfamily|
+      ['Debian', 'Gentoo', 'RedHat', 'Suse'].each do |osfamily|
 
         let :facts do
           {
