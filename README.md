@@ -57,3 +57,16 @@ or just do not call the class.
     }
 ```
 One of hard, soft or both must be set!
+
+### Do not manage /etc/security/limits.d/
+
+In an effort to make this module compatible with similar modules, e.g.
+[puppet-module-pam](https://github.com/ghoneycutt/puppet-module-pam), management
+of `/etc/security/limits.d` can be disabled by way of the `manage_limits_d_dir`
+class parameter:
+
+```puppet
+class { 'limits':
+  manage_limits_d_dir => false,
+}
+```

@@ -5,7 +5,7 @@ group :development, :test do
   gem 'rspec-puppet'
   gem 'metadata-json-lint'
   gem 'puppetlabs_spec_helper'
-  gem 'puppet-lint', :git => 'https://github.com/rodjek/puppet-lint.git'
+  gem 'puppet-lint', '>= 1.0', '< 3.0'
   gem 'puppet-lint-absolute_classname-check'
   gem 'puppet-lint-alias-check'
   gem 'puppet-lint-empty_string-check'
@@ -29,4 +29,12 @@ end
 # rspec must be v2 for ruby 1.8.7
 if RUBY_VERSION >= '1.8.7' and RUBY_VERSION < '1.9'
   gem 'rspec', '~> 2.0'
+end
+
+if RUBY_VERSION < '2.0'
+  # json 2.x requires ruby 2.0. Lock to 1.8
+  gem 'json', '~> 1.8'
+  gem 'json_pure', '~> 1.0'
+else
+  gem 'json'
 end
