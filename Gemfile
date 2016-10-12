@@ -11,7 +11,6 @@ group :development, :test do
   gem 'puppet-lint-empty_string-check'
   gem 'puppet-lint-file_ensure-check'
   gem 'puppet-lint-file_source_rights-check'
-  gem 'puppet-lint-fileserver-check'
   gem 'puppet-lint-leading_zero-check'
   gem 'puppet-lint-spaceship_operator_without_tag-check'
   gem 'puppet-lint-trailing_comma-check'

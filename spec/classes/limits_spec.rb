@@ -40,9 +40,9 @@ describe 'limits' do
 
           it do
             if params[:manage_limits_d_dir] == false
-              should_not contain_file('/etc/security/limits.d/')
+              should_not contain_file('/etc/security/limits.d')
             else
-              should contain_file('/etc/security/limits.d/').with(
+              should contain_file('/etc/security/limits.d').with(
               'ensure'  => 'directory',
               'owner'   => 'root',
               'group'   => 'root',
