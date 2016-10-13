@@ -26,7 +26,7 @@ define limits::limits(
   $both       = undef,
 ) {
 
-  include limits
+  include ::limits
 
   # minimal validation
   unless $hard or $soft or $both { fail('$hard, $soft or $both is required') }
