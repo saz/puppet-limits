@@ -4,9 +4,38 @@ Manage user and group limits via Puppet
 
 This module manages the limits of the PAM module pam_limits.
 
+It creates files in `/etc/security/limits.d` and does not manage the file `/etc/security/limits.conf`
+
 ## How to use
 
-`include ::limits`
+
+### Set limits using title pattern:
+
+```puppet
+    limits::limits{'*/nofile':
+      hard => 1048576,
+      soft => 1048576,
+    }
+    limits::limits{'root/nofile': both => 1048576; }
+```
+
+### Using hiera
+
+Puppet:
+
+```puppet
+    include ::limits
+```
+
+Hiera:
+
+```yaml
+    limits::entries:
+      'root/nofile':
+        both: 1048576
+      '*/memlock':
+        both: unlimited
+```
 
 ## Compatibility
 
@@ -16,7 +45,7 @@ parser) and v4 with Ruby versions 1.8.7 (Puppet v3 only), 1.9.3, 2.0.0 and
 
 ### Purge limits.d directory
 
-The class `limits` will purge the limit.d directory as default.
+The class `limits` will purge the limits.d directory as default.
 You can explicit change this with the parameter `purge_limits_d_dir`
 or just do not call the class.
 
@@ -31,7 +60,7 @@ or just do not call the class.
       soft       => 16384,
     }
 ```
-### Do NOT purge limits.d directory explicit
+### Do NOT purge limits.d directory explicitly
 
 ```puppet
     class { 'limits':

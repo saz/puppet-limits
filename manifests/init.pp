@@ -1,9 +1,9 @@
 # == Class: limits
 #
 class limits (
-  $purge_limits_d_dir = true,
-  $entries_hash = hiera_hash(limits::entries, {}),
-  $manage_limits_d_dir = true
+  $purge_limits_d_dir   = true,
+  $entries_hash         = hiera_hash(limits::entries, {}),
+  $manage_limits_d_dir  = true,
 ) inherits ::limits::params {
 
   if $manage_limits_d_dir == true {
