@@ -1,17 +1,20 @@
 # == Class: limits
 #
 class limits (
-  $purge_limits_d_dir = true,
-  $entries_hash = hiera_hash(limits::entries, {})
+  $purge_limits_d_dir   = true,
+  $entries_hash         = hiera_hash(limits::entries, {}),
+  $manage_limits_d_dir  = true,
 ) inherits ::limits::params {
 
-  file { $limits::params::limits_dir:
-    ensure  => 'directory',
-    owner   => 'root',
-    group   => 'root',
-    force   => true,
-    purge   => $purge_limits_d_dir,
-    recurse => true,
+  if $manage_limits_d_dir == true {
+    file { $limits::params::limits_dir:
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => 'root',
+      force   => true,
+      purge   => $purge_limits_d_dir,
+      recurse => true,
+    }
   }
 
   ### Create instances for integration with Hiera
