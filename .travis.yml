@@ -1,21 +1,11 @@
----
-after_success:
-  - git clone -q git://github.com/puppetlabs/ghpublisher.git .forge-releng
-  - .forge-releng/publish
-env:
-  global:
-  - PUBLISHER_LOGIN=saz
-  - secure: |-
-      koyI8EYdgR0mw7EzgHjeVxHLCqIWCp89yyWiV0YZcwGH4nx09p2MJyA9zTWXb+IbeTvNAgoe
-      5g+Mk/pA3UOw2fyZaFtna4xTkKfZc5RvuHe+sM/Tz/rpDH4iBs0Pvkmo3UgPx4awb9/e6Uvg
-      RHGqRD8dKFLYRk10AdQ2emmr7iw=
-
+sudo: false
 language: ruby
 
 rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.0
+  - 2.3.1
 
 env:
   matrix:
@@ -33,8 +23,6 @@ env:
     - PUPPET_GEM_VERSION="~> 4.2.0"
     - PUPPET_GEM_VERSION="~> 4.3.0"
     - PUPPET_GEM_VERSION="~> 4" STRICT_VARIABLES="yes"
-
-sudo: false
 
 script: 'bundle exec metadata-json-lint metadata.json && bundle exec rake validate && bundle exec rake lint && SPEC_OPTS="--format documentation" bundle exec rake spec'
 
@@ -54,3 +42,12 @@ matrix:
 
 notifications:
   email: false
+deploy:
+  provider: puppetforge
+  user: saz
+  password:
+    secure: iVyOAO2gwDhQIPPux7DJPDd4gV80vaOKuM2K5qgMeRUT2eKLxuVIxPJ1S87CEO31I67NzY4zmUaIujB8YGNEVYL/OQKzDXNV5X4rieEyv9Ik6EmbCsMwKYKyrjhElBvpWTNnuZq+KOrHzXq8gk5fUCs4QtkFsBFBL453IA4zcxg=
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.3.1
