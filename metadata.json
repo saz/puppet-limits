@@ -1,6 +1,6 @@
 {
   "name": "saz-limits",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "author": "saz",
   "summary": "Manage user limits via puppet",
   "description": "Manage user limits via puppet",
