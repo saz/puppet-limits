@@ -46,7 +46,7 @@ deploy:
   provider: puppetforge
   user: saz
   password:
-    secure: iVyOAO2gwDhQIPPux7DJPDd4gV80vaOKuM2K5qgMeRUT2eKLxuVIxPJ1S87CEO31I67NzY4zmUaIujB8YGNEVYL/OQKzDXNV5X4rieEyv9Ik6EmbCsMwKYKyrjhElBvpWTNnuZq+KOrHzXq8gk5fUCs4QtkFsBFBL453IA4zcxg=
+    secure: EB6NYFhMlNUGTg4rGsy5h+7gMp+1F0eyXOJwq4TgT2XZMYGv0j/CFkUyOkTKuMV6h9iGDnUH1jdMlFHztWbgymXm4k7ETNtcA2F/1QRlanAe6zUuYZ96/vc1X5+ER8v22iY6YlofGAOCl23MYHSDSHBlMreAnFFWCRJxpB/RjDg=
   on:
     tags: true
     all_branches: true
