@@ -1,45 +1,21 @@
 sudo: false
 language: ruby
-
-rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
-  - 2.3.1
-
-env:
-  matrix:
-    - PUPPET_GEM_VERSION="~> 3.1.0"
-    - PUPPET_GEM_VERSION="~> 3.2.0"
-    - PUPPET_GEM_VERSION="~> 3.3.0"
-    - PUPPET_GEM_VERSION="~> 3.4.0"
-    - PUPPET_GEM_VERSION="~> 3.5.0"
-    - PUPPET_GEM_VERSION="~> 3.6.0"
-    - PUPPET_GEM_VERSION="~> 3.7.0"
-    - PUPPET_GEM_VERSION="~> 3.8.0"
-    - PUPPET_GEM_VERSION="~> 3" FUTURE_PARSER="yes"
-    - PUPPET_GEM_VERSION="~> 4.0.0"
-    - PUPPET_GEM_VERSION="~> 4.1.0"
-    - PUPPET_GEM_VERSION="~> 4.2.0"
-    - PUPPET_GEM_VERSION="~> 4.3.0"
-    - PUPPET_GEM_VERSION="~> 4" STRICT_VARIABLES="yes"
-
 script: 'bundle exec metadata-json-lint metadata.json && bundle exec rake validate && bundle exec rake lint && SPEC_OPTS="--format documentation" bundle exec rake spec'
-
 matrix:
   fast_finish: true
-  exclude:
-    - rvm: 2.0.0
-      env: PUPPET_GEM_VERSION="~> 3.1.0"
-    - rvm: 2.1.0
-      env: PUPPET_GEM_VERSION="~> 3.1.0"
-    - rvm: 2.1.0
-      env: PUPPET_GEM_VERSION="~> 3.2.0"
-    - rvm: 2.1.0
-      env: PUPPET_GEM_VERSION="~> 3.3.0"
-    - rvm: 2.1.0
-      env: PUPPET_GEM_VERSION="~> 3.4.0"
-
+  include:
+  - rvm: 1.9.3
+    env: PUPPET_GEM_VERSION="~> 3"
+  - rvm: 2.1
+    env: PUPPET_GEM_VERSION="~> 3"
+  - rvm: 2.2
+    env: PUPPET_GEM_VERSION="~> 3"
+  - rvm: 2.2
+    env: PUPPET_GEM_VERSION="~> 3" FUTURE_PARSER="yes"
+  - rvm: 2.3.1
+    env: PUPPET_GEM_VERSION="~> 4"
+  - rvm: 2.3.1
+    env: PUPPET_GEM_VERSION="~> 4" STRICT_VARIABLES="yes"
 notifications:
   email: false
 deploy:
