@@ -14,8 +14,8 @@ describe 'limits::limits', :type => :define do
         :user       => 'username',
         :limit_type => 'nofile',
         :ensure     => 'present',
-        :hard       => '16384',
-        :soft       => '16384'
+        :hard       => 16384,
+        :soft       => 16384
         }
     end
 
@@ -26,8 +26,8 @@ describe 'limits::limits', :type => :define do
           :user       => 'username',
           :limit_type => 'nofile',
           :ensure     => 'present',
-          :hard       => '16384',
-          :soft       => '16384'
+          :hard       => 16384,
+          :soft       => 16384
         })
       }
       it { should contain_file(filename).with({
@@ -45,8 +45,8 @@ describe 'limits::limits', :type => :define do
           :user       => 'username',
           :limit_type => 'nofile',
           :ensure     => 'present',
-          :hard       => '16384',
-          :soft       => '16384'
+          :hard       => 16384,
+          :soft       => 16384
         })
       }
       it { should contain_file(filename).with({
@@ -64,8 +64,8 @@ describe 'limits::limits', :type => :define do
         :user       => 'username',
         :limit_type => 'nofile',
         :ensure     => 'absent',
-        :hard       => '16384',
-        :soft       => '16384'
+        :hard       => 16384,
+        :soft       => 16384
         }
       end
       it { should contain_file(filename).with({
@@ -84,7 +84,7 @@ describe 'limits::limits', :type => :define do
           :user       => 'username',
           :limit_type => 'nofile',
           :ensure     => 'present',
-          :both       => '16384'
+          :both       => 16384
         }
       end
       let(:title)    { 'username_nofile.conf' }
@@ -92,7 +92,7 @@ describe 'limits::limits', :type => :define do
           :user       => 'username',
           :limit_type => 'nofile',
           :ensure     => 'present',
-          :both       => '16384'
+          :both       => 16384
         })
       }
       it { should contain_file(filename).with({
@@ -110,7 +110,7 @@ describe 'limits::limits', :type => :define do
       let(:title)    { '*/nofile' }
       let :params do
         {
-          :both       => '16384'
+          :both       => 16384
         }
       end
       it { should compile.with_all_deps }
@@ -127,7 +127,7 @@ describe 'limits::limits', :type => :define do
       let(:title)    { 'root/nofile' }
       let :params do
         {
-          :hard       => '12345'
+          :hard       => 12345
         }
       end
       it { should contain_file('/etc/security/limits.d/root_nofile.conf').with({
@@ -146,7 +146,7 @@ describe 'limits::limits', :type => :define do
       let :params do
         {
           :limit_type => 'nofile',
-          :both       => '16384'
+          :both       => 16384
         }
       end
       it { should compile.and_raise_error(/when not using the title pattern/) }
@@ -156,7 +156,7 @@ describe 'limits::limits', :type => :define do
       let :params do
         {
           :user => 'foo',
-          :both => '16384'
+          :both => 16384
         }
       end
       it { should compile.and_raise_error(/when not using the title pattern/) }

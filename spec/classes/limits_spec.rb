@@ -36,7 +36,6 @@ describe 'limits' do
 
         describe "on supported osfamily: #{osfamily}" do
 
-          it { should contain_class('limits::params') }
 
           it do
             if params[:manage_limits_d_dir] == false
