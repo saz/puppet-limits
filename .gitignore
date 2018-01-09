@@ -12,6 +12,7 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+vendor/
 
 # YARD artifacts
 .yardoc
@@ -21,11 +22,15 @@ doc/
 # Vim
 *.swp
 
+# Eclipse
+.project
+
 # OS X
 .DS_Store
 
 # Puppet
 coverage/
-spec/fixtures/modules/*
 spec/fixtures/manifests/*
+spec/fixtures/modules/*
 Gemfile.lock
+.forge-releng/
