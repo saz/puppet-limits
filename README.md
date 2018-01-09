@@ -19,6 +19,20 @@ It creates files in `/etc/security/limits.d` and does not manage the file `/etc/
     limits::limits{'root/nofile': both => 1048576; }
 ```
 
+### Parameters
+
+* `purge_limits_d_dir` (Boolean, default: true) Whether or not to purge the limits.d directory
+* `manage_limits_d_dir` (Boolean, default: true) Whether or not to manage the limits.d directory
+* `limits_dir`: (String) The location of the limits.d directory
+* `entries`: (Hash) A hash of limits entries, keys should be the name and the value as a hash made up of;
+  * `ensure`: (String, default present) Values can be absent or present
+  * `user`: (String) The user that the limit applies to
+  * `limit_type` (String) The limit type
+  * `hard`: (Integer) the hard value
+  * `soft`: (Integer) the soft value
+  * `both`: (Integer) the value of both soft and hard
+
+
 ### Using hiera
 
 Puppet:
@@ -39,9 +53,23 @@ Hiera:
 
 ## Compatibility
 
-This module has been tested to work with Puppet v3 (with and without the future
-parser) and v4 with Ruby versions 1.8.7 (Puppet v3 only), 1.9.3, 2.0.0 and
-2.1.0.
+### Puppet 4.9+
+
+This module is compatible with Puppet 4.9+, and Puppet 5.0+
+
+### Puppet 4.0 - 4.8
+
+To use this module with previous versions of Puppet 4 (prior to Hiera 5) you should update your Hiera data to include the following
+
+```yaml
+---
+limits::limits_dir: /etc/security/limits.d
+
+lookup_options:
+  limits::entries:
+    merge: deep
+```
+
 
 ### Purge limits.d directory
 

@@ -1,0 +1,6 @@
+---
+limits::limits_dir: /etc/security/limits.d
+
+lookup_options:
+  limits::entries:
+    merge: deep

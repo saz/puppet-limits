@@ -18,12 +18,12 @@
 # Manages:
 #   limit file in limits.d with the values provided
 define limits::limits(
-  $ensure     = present,
-  $user       = undef,
-  $limit_type = undef,
-  $hard       = undef,
-  $soft       = undef,
-  $both       = undef,
+  Enum['absent', 'present'] $ensure     = present,
+  Optional[String]          $user       = undef,
+  Optional[String]          $limit_type = undef,
+  Optional[Integer]         $hard       = undef,
+  Optional[Integer]         $soft       = undef,
+  Optional[Integer]         $both       = undef,
 ) {
 
   include ::limits
@@ -45,12 +45,12 @@ define limits::limits(
   }
 
   if $title =~ /\.conf$/ {
-    $target_file = "${limits::params::limits_dir}/${title}"
+    $target_file = "${limits::limits_dir}/${title}"
   } else {
     if $real_user == '*' {
-      $target_file    = "${limits::params::limits_dir}/default_${real_type}.conf"
+      $target_file    = "${limits::limits_dir}/default_${real_type}.conf"
     } else {
-      $target_file    = "${limits::params::limits_dir}/${real_user}_${real_type}.conf"
+      $target_file    = "${limits::limits_dir}/${real_user}_${real_type}.conf"
     }
   }
 

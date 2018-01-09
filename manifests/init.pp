@@ -1,13 +1,14 @@
 # == Class: limits
 #
 class limits (
-  $purge_limits_d_dir   = true,
-  $entries_hash         = hiera_hash(limits::entries, {}),
-  $manage_limits_d_dir  = true,
-) inherits ::limits::params {
+  String $limits_dir,
+  Boolean $purge_limits_d_dir  = true,
+  Boolean $manage_limits_d_dir = true,
+  Hash $entries = {},
+) {
 
-  if $manage_limits_d_dir == true {
-    file { $limits::params::limits_dir:
+  if $manage_limits_d_dir {
+    file { $limits_dir:
       ensure  => 'directory',
       owner   => 'root',
       group   => 'root',
@@ -18,8 +19,11 @@ class limits (
   }
 
   ### Create instances for integration with Hiera
-  if $entries_hash != {} {
-    validate_hash($entries_hash)
-    create_resources(limits::limits, $entries_hash)
+
+  $entries.each | String $e_name, Hash $e_params | {
+    limits::limits { $e_name:
+      * => $e_params,
+    }
   }
+
 }
