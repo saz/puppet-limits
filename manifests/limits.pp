@@ -18,12 +18,12 @@
 # Manages:
 #   limit file in limits.d with the values provided
 define limits::limits(
-  Enum['absent', 'present'] $ensure     = present,
-  Optional[String]          $user       = undef,
-  Optional[String]          $limit_type = undef,
-  Optional[Integer]         $hard       = undef,
-  Optional[Integer]         $soft       = undef,
-  Optional[Integer]         $both       = undef,
+  Enum['absent', 'present']     $ensure     = present,
+  Optional[String]              $user       = undef,
+  Optional[String]              $limit_type = undef,
+  Variant[Integer,String,Undef] $hard       = undef,
+  Variant[Integer,String,Undef] $soft       = undef,
+  Variant[Integer,String,Undef] $both       = undef,
 ) {
 
   include ::limits
