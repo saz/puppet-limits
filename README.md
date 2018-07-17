@@ -73,9 +73,8 @@ lookup_options:
 
 ### Purge limits.d directory
 
-The class `limits` will purge the limits.d directory as default.
+The class `limits` will purge the limits.d directory by default.
 You can explicit change this with the parameter `purge_limits_d_dir`
-or just do not call the class.
 
 ```puppet
 	class { 'limits': }
@@ -119,8 +118,7 @@ One of hard, soft or both must be set!
 
 In an effort to make this module compatible with similar modules, e.g.
 [puppet-module-pam](https://github.com/ghoneycutt/puppet-module-pam), management
-of `/etc/security/limits.d` can be disabled by way of the `manage_limits_d_dir`
-class parameter:
+of `/etc/security/limits.d` can be disabled by the `manage_limits_d_dir` class parameter:
 
 ```puppet
 class { 'limits':
