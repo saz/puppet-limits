@@ -29,7 +29,9 @@ define limits::limits(
   include ::limits
 
   # minimal validation
-  unless $hard or $soft or $both { fail('$hard, $soft or $both is required') }
+  if $ensure == 'present' {
+    unless $hard or $soft or $both { fail('$hard, $soft or $both is required') }
+  }
   unless $title =~ /\// {
     unless $user and $limit_type { fail('when not using the title pattern, $user and $limit_type are required') }
   }

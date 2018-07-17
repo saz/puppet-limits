@@ -69,7 +69,22 @@ describe 'limits::limits', :type => :define do
 
       it {
         is_expected.to contain_file(filename).with('ensure' => 'absent',
-                                                   'content'   => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nusername      hard  nofile          16384\nusername      soft  nofile          16384\n",
+                                                   'owner'     => 'root',
+                                                   'group'     => 'root')
+      }
+    end
+
+    describe 'when removing an limits entry without hard or soft set' do
+      let :params do
+        {
+          :user       => 'username',
+          :limit_type => 'nofile',
+          :ensure     => 'absent'
+        }
+      end
+
+      it {
+        is_expected.to contain_file(filename).with('ensure' => 'absent',
                                                    'owner'     => 'root',
                                                    'group'     => 'root')
       }
