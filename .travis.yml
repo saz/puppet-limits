@@ -1,22 +1,33 @@
 sudo: false
 language: ruby
-script: 'bundle exec metadata-json-lint metadata.json && bundle exec rake validate && bundle exec rake lint && SPEC_OPTS="--format documentation" bundle exec rake spec'
+cache: bundler
+bundler_args: "--without system_tests development"
+before_install:
+- bundle -v
+- rm Gemfile.lock || true
+- gem update --system
+- gem update bundler
+- gem --version
+- bundle -v
+script:
+- bundle exec rake $CHECK
 matrix:
   fast_finish: true
   include:
-  - rvm: 2.1.9
-    env: PUPPET_VERSION="~> 4.9.0" STRICT_VARIABLES="yes"
-  - rvm: 2.1.9
-    env: PUPPET_VERSION="~> 4.10.0" STRICT_VARIABLES="yes"
-  - rvm: 2.4.1
-    env: PUPPET_VERSION="~> 5.0.0" STRICT_VARIABLES="yes"
-  - rvm: 2.4.1
-    env: PUPPET_VERSION="~> 5.1.0" STRICT_VARIABLES="yes"
-  - rvm: 2.4.1
-    env: PUPPET_VERSION="~> 5.2.0" STRICT_VARIABLES="yes"
-  - rvm: 2.4.1
-    env: PUPPET_VERSION="~> 5.3.0" STRICT_VARIABLES="yes" FORGEDEPLOY=true
-
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=test
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=rubocop
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=build FORGEDEPLOY=true
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 5.0" STRICT_VARIABLES="yes" CHECK=test
+  - rvm: 2.3.1
+    env: PUPPET_VERSION="~> 5.0" STRICT_VARIABLES="yes" CHECK=rubocop
+  - rvm: 2.5.3
+    env: PUPPET_VERSION="~> 6.1" STRICT_VARIABLES="yes" CHECK=test
+  - rvm: 2.5.3
+    env: PUPPET_VERSION="~> 6.1" STRICT_VARIABLES="yes" CHECK=rubocop
 notifications:
   email: false
 deploy:
@@ -27,4 +38,5 @@ deploy:
   on:
     tags: true
     all_branches: true
+    rvm: 2.3.1
     condition: "$FORGEDEPLOY = true"
