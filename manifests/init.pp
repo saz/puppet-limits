@@ -1,10 +1,10 @@
 # == Class: limits
 #
 class limits (
-  String $limits_dir,
-  Boolean $purge_limits_d_dir  = true,
-  Boolean $manage_limits_d_dir = true,
-  Hash $entries = {},
+  Hash    $entries,
+  String  $limits_dir,
+  Boolean $manage_limits_d_dir,
+  Boolean $purge_limits_d_dir,
 ) {
 
   if $manage_limits_d_dir {

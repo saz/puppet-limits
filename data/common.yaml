@@ -1,6 +1,9 @@
 ---
-limits::limits_dir: /etc/security/limits.d
-
 lookup_options:
   limits::entries:
     merge: deep
+
+limits::entries: {}
+limits::limits_dir: /etc/security/limits.d
+limits::manage_limits_d_dir: true
+limits::purge_limits_d_dir: true
