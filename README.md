@@ -1,4 +1,4 @@
-# puppet-limits [![Build Status](https://secure.travis-ci.org/saz/puppet-limits.png)](http://travis-ci.org/saz/puppet-limits)
+# puppet-limits [![CI](https://github.com/saz/puppet-limits/actions/workflows/ci.yml/badge.svg)](https://github.com/saz/puppet-limits/actions/workflows/ci.yml)
 
 Manage user and group limits via Puppet
 
