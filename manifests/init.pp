@@ -6,7 +6,6 @@ class limits (
   Boolean $manage_limits_d_dir,
   Boolean $purge_limits_d_dir,
 ) {
-
   if $manage_limits_d_dir {
     file { $limits_dir:
       ensure  => 'directory',
@@ -18,12 +17,9 @@ class limits (
     }
   }
 
-  ### Create instances for integration with Hiera
-
   $entries.each | String $e_name, Hash $e_params | {
     limits::limits { $e_name:
       * => $e_params,
     }
   }
-
 }
