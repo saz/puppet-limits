@@ -17,7 +17,7 @@
 #
 # Manages:
 #   limit file in limits.d with the values provided
-define limits::limits(
+define limits::limits (
   Enum['absent', 'present']     $ensure     = present,
   Optional[String]              $user       = undef,
   Optional[String]              $limit_type = undef,
@@ -25,15 +25,16 @@ define limits::limits(
   Variant[Integer,String,Undef] $soft       = undef,
   Variant[Integer,String,Undef] $both       = undef,
 ) {
-
-  include ::limits
+  include limits
 
   # minimal validation
   if $ensure == 'present' {
     unless $hard or $soft or $both { fail('$hard, $soft or $both is required') }
   }
   unless $title =~ /\// {
-    unless $user and $limit_type { fail('when not using the title pattern, $user and $limit_type are required') }
+    unless $user and $limit_type {
+      fail('when not using the title pattern, $user and $limit_type are required')
+    }
   }
 
   $key = split($title, '/')
