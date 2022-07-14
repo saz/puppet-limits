@@ -2,7 +2,7 @@
 
 require 'spec_helper_acceptance'
 
-describe 'limits::limits class' do
+describe 'limits::limits define' do
   context 'with default parameters' do
     it 'works with no errors' do
       pp = <<-PP
@@ -19,10 +19,6 @@ describe 'limits::limits class' do
   end
 
   context 'with ignore and suffix specified managed file' do
-    describe command('touch /etc/sudoers.d/file-from-rpm') do
-      its(:exit_status) { is_expected.to eq 0 }
-    end
-
     it 'create a puppet managed file' do
       pp = <<-PP
       limits::limits { 'item':
