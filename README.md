@@ -4,7 +4,7 @@ Manage user and group limits via Puppet
 
 This module manages the limits of the PAM module pam_limits.
 
-It creates files in `/etc/security/limits.d` and does not manage the file `/etc/security/limits.conf`
+It creates files in `/etc/security/limits.d` and optionally manages the file `/etc/security/limits.conf`
 
 ## How to use
 
@@ -23,7 +23,12 @@ It creates files in `/etc/security/limits.d` and does not manage the file `/etc/
 
 * `purge_limits_d_dir` (Boolean, default: true) Whether or not to purge the limits.d directory
 * `manage_limits_d_dir` (Boolean, default: true) Whether or not to manage the limits.d directory
+* `manage_limits_file` (Boolean, default: false) Whether or not to manage the /etc/security/limits.conf file.
+* `limits_file` (String, default: /etc/security/limits.conf) The name of the limits file to be managed.
 * `limits_dir`: (String) The location of the limits.d directory
+* `limits_file_owner`: (String, default: root) The owner of the ${limits_file} file.
+* `limits_file_group`: (String, default: root) The group of the ${limits_file} file.
+* `limits_file_mode`: (String, defaul: '0644') The file mode of the ${limits_file} file.
 * `entries`: (Hash) A hash of limits entries, keys should be the name and the value as a hash made up of;
   * `ensure`: (String, default present) Values can be absent or present
   * `user`: (String) The user that the limit applies to
