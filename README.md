@@ -31,6 +31,7 @@ It creates files in `/etc/security/limits.d` and does not manage the file `/etc/
   * `hard`: (Integer) the hard value
   * `soft`: (Integer) the soft value
   * `both`: (Integer) the value of both soft and hard
+  * `target`: (String) Optional name of file in `limits_dir` to set limit settings to. Will ignore other file naming logic when provided.
 
 
 ### Using hiera
