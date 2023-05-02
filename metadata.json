@@ -31,7 +31,6 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9",
         "10",
         "11"
       ]
@@ -58,5 +57,9 @@
     }
   ],
   "dependencies": [
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": ">= 7.3.0 < 8.0.0"
+    }
   ]
 }

@@ -7,6 +7,7 @@
 #    $hard  - hard limit
 #    $soft  - soft limit
 #    $both  - set both limits (-)
+#    $target - name of file in `limits::limits_dir` directory the settings will be applied. If provided, title with `.conf` extension will be not be used as target file.
 #
 #  Example:
 #  limits::limits{'*/nofile':
@@ -14,6 +15,10 @@
 #    soft => 123,
 #  }
 #  limits::limits{'root/nofile': both => 1234; }
+#
+#  Example of multiple settings in single file
+#  limits::limits{'root/nofile': both => 1234, target => '01-root.conf' }
+#  limits::limits{'root/nproc': both => 1234, target => '01-root.conf' }
 #
 # Manages:
 #   limit file in limits.d with the values provided
@@ -24,6 +29,7 @@ define limits::limits (
   Variant[Integer,String,Undef] $hard       = undef,
   Variant[Integer,String,Undef] $soft       = undef,
   Variant[Integer,String,Undef] $both       = undef,
+  Optional[String]              $target     = undef,
 ) {
   include limits
 
@@ -47,7 +53,9 @@ define limits::limits (
     default => $limit_type,
   }
 
-  if $title =~ /\.conf$/ {
+  if $target {
+    $target_file = "${limits::limits_dir}/${target}"
+  } elsif $title =~ /\.conf$/ {
     $target_file = "${limits::limits_dir}/${title}"
   } else {
     if $real_user == '*' {
@@ -57,10 +65,22 @@ define limits::limits (
     }
   }
 
-  file { $target_file:
-    ensure  => $ensure,
-    owner   => 'root',
-    group   => 'root',
+  if (!defined(Concat[$target_file])) {
+    concat { $target_file:
+      ensure => $ensure,
+      owner  => 'root',
+      group  => 'root',
+    }
+
+    concat::fragment { "top_${target_file}":
+      target  => $target_file,
+      content => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>",
+      order   => '01',
+    }
+  }
+
+  concat::fragment { "${real_user}_${real_type}":
+    target  => $target_file,
     content => template('limits/limits.erb'),
   }
 }
