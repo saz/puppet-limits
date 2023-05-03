@@ -26,6 +26,10 @@ describe 'limits' do
             'purge'   => true
           )
         end
+
+        it do
+          is_expected.not_to contain_file('/etc/security/limits.conf')
+        end
       end
 
       describe 'with purge_limits_d_dir set to false' do
@@ -55,6 +59,23 @@ describe 'limits' do
         end
 
         it { is_expected.not_to contain_file('/etc/security/limits.d') }
+      end
+
+      describe 'with manage_limits_file set to true' do
+        let :params do
+          {
+            manage_limits_file: true
+          }
+        end
+
+        it do
+          is_expected.to contain_file('/etc/security/limits.conf').with(
+            'ensure' => 'file',
+            'owner'  => 'root',
+            'group'  => 'root',
+            'mode'   => '0644'
+          )
+        end
       end
     end
   end

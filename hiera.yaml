@@ -4,5 +4,18 @@ defaults:
   datadir: data
   data_hash: yaml_data
 hierarchy:
+
+  - name: "osfamily/major release"
+    paths:
+        # Used to distinguish between Debian and Ubuntu
+      - "os/%{facts.os.name}/%{facts.os.release.major}.yaml"
+      - "os/%{facts.os.family}/%{facts.os.release.major}.yaml"
+
+  - name: "osfamily"
+    paths:
+      - "os/%{facts.os.name}.yaml"
+      - "os/%{facts.os.family}.yaml"
+
   - name: "common"
     path: "common.yaml"
+
