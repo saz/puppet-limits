@@ -60,7 +60,7 @@ describe 'limits::limits', type: :define do
             is_expected.to contain_concat__fragment('top_/etc/security/limits.d/username_nofile.conf').with(
               name: 'top_/etc/security/limits.d/username_nofile.conf',
               target: filename,
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>",
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
               order: '01'
             )
           }
@@ -79,7 +79,7 @@ describe 'limits::limits', type: :define do
               name: 'top_/etc/security/limits.d/username_nofile.conf',
               target: filename,
               order: '01',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>"
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n"
             )
           }
 
@@ -137,7 +137,7 @@ describe 'limits::limits', type: :define do
             is_expected.to contain_concat__fragment('top_/etc/security/limits.d/username_nofile.conf').with(
               name: 'top_/etc/security/limits.d/username_nofile.conf',
               target: filename,
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>",
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
               order: '01'
             )
           }
@@ -156,7 +156,7 @@ describe 'limits::limits', type: :define do
               name: 'top_/etc/security/limits.d/username_nofile.conf',
               target: filename,
               order: '01',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>"
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n"
             )
           }
 
@@ -257,7 +257,7 @@ describe 'limits::limits', type: :define do
             is_expected.to contain_concat__fragment('top_/etc/security/limits.d/username_nofile.conf').with(
               name: 'top_/etc/security/limits.d/username_nofile.conf',
               target: filename,
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>",
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
               order: '01'
             )
           }
@@ -276,7 +276,7 @@ describe 'limits::limits', type: :define do
               name: 'top_/etc/security/limits.d/username_nofile.conf',
               target: filename,
               order: '01',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>"
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n"
             )
           }
 
@@ -343,7 +343,7 @@ describe 'limits::limits', type: :define do
             is_expected.to contain_concat__fragment('top_/etc/security/limits.d/99-service.conf').with(
               name: 'top_/etc/security/limits.d/99-service.conf',
               target: '/etc/security/limits.d/99-service.conf',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>",
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
               order: '01'
             )
           }
@@ -362,7 +362,7 @@ describe 'limits::limits', type: :define do
               name: 'top_/etc/security/limits.d/99-service.conf',
               target: '/etc/security/limits.d/99-service.conf',
               order: '01',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>"
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n"
             )
           }
 
@@ -419,7 +419,7 @@ describe 'limits::limits', type: :define do
             is_expected.to contain_concat__fragment('top_/etc/security/limits.d/default_nofile.conf').with(
               name: 'top_/etc/security/limits.d/default_nofile.conf',
               target: '/etc/security/limits.d/default_nofile.conf',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>",
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
               order: '01'
             )
           }
@@ -438,7 +438,7 @@ describe 'limits::limits', type: :define do
               name: 'top_/etc/security/limits.d/default_nofile.conf',
               target: '/etc/security/limits.d/default_nofile.conf',
               order: '01',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>"
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n"
             )
           }
 
@@ -491,7 +491,7 @@ describe 'limits::limits', type: :define do
             is_expected.to contain_concat__fragment('top_/etc/security/limits.d/root_nofile.conf').with(
               name: 'top_/etc/security/limits.d/root_nofile.conf',
               target: '/etc/security/limits.d/root_nofile.conf',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>",
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
               order: '01'
             )
           }
@@ -510,7 +510,7 @@ describe 'limits::limits', type: :define do
               name: 'top_/etc/security/limits.d/root_nofile.conf',
               target: '/etc/security/limits.d/root_nofile.conf',
               order: '01',
-              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>"
+              content: "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n"
             )
           }
 

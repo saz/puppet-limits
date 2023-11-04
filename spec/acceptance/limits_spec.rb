@@ -35,7 +35,7 @@ describe 'limits::limits define' do
 
     describe file('/etc/security/limits.d/user_nofile.conf') do
       it { is_expected.to be_file }
-      it { is_expected.to contain "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nuser          -     nofile          12345" }
+      its(:content) { is_expected.to match "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nuser          -     nofile          12345" }
     end
   end
 
@@ -57,7 +57,7 @@ describe 'limits::limits define' do
 
     describe file('/etc/security/limits.d/00-item.conf') do
       it { is_expected.to be_file }
-      it { is_expected.to contain "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nuser          -     nofile          12345" }
+      its(:content) { is_expected.to match "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nuser          -     nofile          12345" }
     end
   end
 
@@ -68,14 +68,28 @@ describe 'limits::limits define' do
         user       => 'user',
         limit_type => 'nofile',
         both       => 12345,
-        target     => '00-item.conf'
+        target     => '01-item.conf'
       }
 
       limits::limits { 'item2':
         user       => 'other_user',
         limit_type => 'nproc',
         both       => 54321,
-        target     => '00-item.conf'
+        target     => '01-item.conf'
+      }
+
+      limits::limits { 'item3':
+        user       => 'zlast_user',
+        limit_type => 'nproc',
+        hard       => 16384,
+        target     => '01-item.conf'
+      }
+
+      limits::limits { 'item4':
+        user       => 'another_user',
+        limit_type => 'nproc',
+        soft       => 16384,
+        target     => '01-item.conf'
       }
       PP
 
@@ -84,9 +98,9 @@ describe 'limits::limits define' do
       expect(apply_manifest(pp, catch_failures: true).exit_code).to be_zero
     end
 
-    describe file('/etc/security/limits.d/00-item.conf') do
+    describe file('/etc/security/limits.d/01-item.conf') do
       it { is_expected.to be_file }
-      it { is_expected.to contain "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nuser          -     nofile          12345\nother_user    -     nproc           54321\n" }
+      its(:content) { is_expected.to match "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\nanother_user  soft  nproc           16384\nother_user    -     nproc           54321\nuser          -     nofile          12345\nzlast_user    hard  nproc           16384\n" }
     end
   end
 end

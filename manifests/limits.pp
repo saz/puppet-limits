@@ -74,7 +74,7 @@ define limits::limits (
 
     concat::fragment { "top_${target_file}":
       target  => $target_file,
-      content => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>",
+      content => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
       order   => '01',
     }
   }
