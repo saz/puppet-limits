@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+[4.0.0]
+### Added
+- add empty template, fixes #47 (#52)
+- Add the management of limits.conf file. (#44)
+- Allow managing multiple settings in one file (#45)
+- Allow Puppet 8 (#51)
+- Add Ubuntu 24.04 and Debian 12 as supported OS (#51)
+### Changed
+- allow puppetlabs/concat < 10 (#51)
+### Fixed
+- Add line end character for top comment and use proper matchers for acceptance tests (#49)
+### Removed
+- remove Debian 9 as supported OS
+- drop Puppet 6 support (#51)
+- remove Ubuntu 18.04 as supported OS (#51)
 
 [3.1.0]
 ### Changed
