@@ -1,8 +1,4 @@
 fixtures:
   repositories:
-    stdlib:
-      repo: https://github.com/puppetlabs/puppetlabs-stdlib.git
-    concat:
-      repo: https://github.com/puppetlabs/puppetlabs-concat.git
-  symlinks:
-    limits: "#{source_dir}"
+    stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
+    concat: 'https://github.com/puppetlabs/puppetlabs-concat.git'
