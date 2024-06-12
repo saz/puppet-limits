@@ -23,13 +23,13 @@
 # Manages:
 #   limit file in limits.d with the values provided
 define limits::limits (
-  Enum['absent', 'present']     $ensure     = present,
-  Optional[String]              $user       = undef,
-  Optional[String]              $limit_type = undef,
-  Variant[Integer,String,Undef] $hard       = undef,
-  Variant[Integer,String,Undef] $soft       = undef,
-  Variant[Integer,String,Undef] $both       = undef,
-  Optional[String]              $target     = undef,
+  Enum['absent', 'present']          $ensure     = present,
+  Optional[String[1]]                $user       = undef,
+  Optional[String[1]]                $limit_type = undef,
+  Optional[Variant[Integer, String]] $hard       = undef,
+  Optional[Variant[Integer, String]] $soft       = undef,
+  Optional[Variant[Integer, String]] $both       = undef,
+  Optional[String[1]]                $target     = undef,
 ) {
   include limits
 
@@ -65,22 +65,20 @@ define limits::limits (
     }
   }
 
-  if (!defined(Concat[$target_file])) {
-    concat { $target_file:
-      ensure => $ensure,
-      owner  => 'root',
-      group  => 'root',
-    }
-
-    concat::fragment { "top_${target_file}":
+  ensure_resource('concat::fragment', "top_${target_file}", {
       target  => $target_file,
       content => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
       order   => '01',
-    }
-  }
+  })
 
   concat::fragment { "${real_user}_${real_type}":
     target  => $target_file,
     content => template('limits/limits.erb'),
   }
+
+  ensure_resource('concat', $target_file, {
+      ensure => $ensure,
+      owner  => 'root',
+      group  => 'root',
+  })
 }

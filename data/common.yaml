@@ -3,7 +3,6 @@ lookup_options:
   limits::entries:
     merge: deep
 
-limits::entries: {}
 limits::limits_dir: /etc/security/limits.d
 limits::manage_limits_d_dir: true
 limits::purge_limits_d_dir: true
@@ -18,3 +17,5 @@ limits::limits_file_mode: '0644'
 # until a specific tempalte for each OS and/or major OS version
 # is supplied.
 limits::limits_template: 'generic'
+
+limits::entries: null
