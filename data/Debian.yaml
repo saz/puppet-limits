@@ -1,3 +1,3 @@
 ---
 
-limits::limits_template: 'limits.conf.ubuntu'
+limits::limits_template: 'limits.conf.debian'
