@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+[5.0.0]
+### Changed
+- little code modernization (#57)
+- Fix limits_template on Debian (#59)
+- drop some EOL operating system releases (#58) => Debian 10, CentOS 7/8, RedHat 7
+
 [4.0.1]
 ### Changed
 - drop explicit version requirements in .fixtures.yml (#54)
