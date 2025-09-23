@@ -1,27 +1,50 @@
-# == Define: limits::limits
+# @summary Manage individual user/group limits
 #
-# Parameters:
-#    $title - should be of the form user/limit_type if $user and $limt_type are not present
-#    $user  - user
-#    $limit_type  - limit type / item
-#    $hard  - hard limit
-#    $soft  - soft limit
-#    $both  - set both limits (-)
-#    $target - name of file in `limits::limits_dir` directory the settings will be applied. If provided, title with `.conf` extension will be not be used as target file.
+# This defined type creates individual limit configuration files in the limits.d directory.
+# The title should be of the form user/limit_type if $user and $limit_type are not provided separately.
 #
-#  Example:
-#  limits::limits{'*/nofile':
-#    hard => 12345,
-#    soft => 123,
-#  }
-#  limits::limits{'root/nofile': both => 1234; }
+# @param ensure
+#   Whether the limit configuration should be present or absent
 #
-#  Example of multiple settings in single file
-#  limits::limits{'root/nofile': both => 1234, target => '01-root.conf' }
-#  limits::limits{'root/nproc': both => 1234, target => '01-root.conf' }
+# @param user
+#   The user or group name to apply limits to. If not specified, extracted from title
 #
-# Manages:
-#   limit file in limits.d with the values provided
+# @param limit_type
+#   The type of limit to set (e.g., 'nofile', 'nproc', 'core'). If not specified, extracted from title
+#
+# @param hard
+#   The hard limit value
+#
+# @param soft
+#   The soft limit value
+#
+# @param both
+#   Set both hard and soft limits to the same value (uses '-' in limits file)
+#
+# @param target
+#   Name of file in `limits::limits_dir` directory where settings will be applied.
+#   If provided, title with `.conf` extension will not be used as target file.
+#
+# @example Setting file descriptor limits for all users
+#   limits::limits{'*/nofile':
+#     hard => 12345,
+#     soft => 123,
+#   }
+#
+# @example Setting limits using both parameter
+#   limits::limits{'root/nofile':
+#     both => 1234,
+#   }
+#
+# @example Multiple settings in single file
+#   limits::limits{'root/nofile':
+#     both => 1234,
+#     target => '01-root.conf',
+#   }
+#   limits::limits{'root/nproc':
+#     both => 1234,
+#     target => '01-root.conf',
+#   }
 define limits::limits (
   Enum['absent', 'present']          $ensure     = present,
   Optional[String[1]]                $user       = undef,

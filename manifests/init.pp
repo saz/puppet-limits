@@ -3,38 +3,29 @@
 #
 # This module manages the limits of the PAM module pam_limits.
 #
+# @param limits_dir
+#   Directory for individual limits config files
+# @param manage_limits_d_dir
+#   Manage $limits_dir itself
+# @param purge_limits_d_dir
+#   Purge $limits_dir
+# @param limits_file
+#   Basic limits configuration file
+# @param manage_limits_file
+#   Manage $limits_file
+# @param limits_file_owner
+#   Owner of $limits_file
+# @param limits_file_group
+#   Group $limits_file
+# @param limits_file_mode
+#   Mode $limits_file
+# @param limits_template
+#   Name of the template to use for $limits_file
+# @param entries
+#   limits configuration file(s) entries
+#
 # @example
 #   include limits
-#
-# @param limits_dir
-# Directory for individual limits config files
-#
-# @param manage_limits_d_dir
-# Manage $limits_dir itself
-#
-# @param purge_limits_d_dir
-# Purge $limits_dir
-#
-# @param limits_file
-# Basic limits configuration file
-#
-# @param manage_limits_file
-# Manage $limits_file
-#
-# @param limits_file_owner
-# Owner of $limits_file
-#
-# @param limits_file_group
-# Group $limits_file
-#
-# @param limits_file_mode
-# Mode $limits_file
-#
-# @param limits_template
-# Name of the template to use for $limits_file
-#
-# @param entries
-# limits configuration file(s) entries
 #
 class limits (
   String[1] $limits_dir,
