@@ -66,9 +66,9 @@ define limits::limits (
   }
 
   ensure_resource('concat::fragment', "top_${target_file}", {
-      target  => $target_file,
-      content => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
-      order   => '01',
+    target  => $target_file,
+    content => "# Managed by Puppet\n\n#<domain>    <type> <item>          <value>\n",
+    order   => '01',
   })
 
   concat::fragment { "${real_user}_${real_type}":
@@ -77,8 +77,8 @@ define limits::limits (
   }
 
   ensure_resource('concat', $target_file, {
-      ensure => $ensure,
-      owner  => 'root',
-      group  => 'root',
+    ensure => $ensure,
+    owner  => 'root',
+    group  => 'root',
   })
 }
