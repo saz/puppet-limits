@@ -28,7 +28,12 @@ describe 'limits' do
         end
 
         it do
-          is_expected.not_to contain_file('/etc/security/limits.conf')
+          is_expected.to contain_file('/etc/security/limits.conf').with(
+            'ensure' => 'file',
+            'owner'  => 'root',
+            'group'  => 'root',
+            'mode'   => '0644'
+          )
         end
       end
 
@@ -61,20 +66,15 @@ describe 'limits' do
         it { is_expected.not_to contain_file('/etc/security/limits.d') }
       end
 
-      describe 'with manage_limits_file set to true' do
+      describe 'with manage_limits_file set to false' do
         let :params do
           {
-            manage_limits_file: true
+            manage_limits_file: false
           }
         end
 
         it do
-          is_expected.to contain_file('/etc/security/limits.conf').with(
-            'ensure' => 'file',
-            'owner'  => 'root',
-            'group'  => 'root',
-            'mode'   => '0644'
-          )
+          is_expected.not_to contain_file('/etc/security/limits.conf')
         end
       end
     end

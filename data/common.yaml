@@ -8,7 +8,7 @@ limits::manage_limits_d_dir: true
 limits::purge_limits_d_dir: true
 
 limits::limits_file: /etc/security/limits.conf
-limits::manage_limits_file: false
+limits::manage_limits_file: true
 limits::limits_file_owner: 'root'
 limits::limits_file_group: 'root'
 limits::limits_file_mode: '0644'
